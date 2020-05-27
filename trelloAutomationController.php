@@ -3,6 +3,13 @@ require("/Users/naoki/trello_automation/trelloInfoConstant.php");
 
 class trelloAutomation extends TrelloInfoConstant
 {
+    /**
+     * curlの共通実行部分の関数科
+     * 
+     * @param string $curl
+     * @param string $parameter
+     * @return string
+     */
     public function execCurlProcess($curl, $parameter){
         curl_setopt($curl, CURLOPT_CUSTOMREQUEST, $parameter);
         curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false); // 証明書の検証を行わない
@@ -10,6 +17,12 @@ class trelloAutomation extends TrelloInfoConstant
         return curl_exec($curl);;
     }
 
+    /**
+     * 特定のボードのboardIdの取得
+     * 取得できない場合はfalseを返す。
+     * 
+     * @return string|bool
+     */
     public function getBoardIdByBoardName(){
         $curl = curl_init();
         curl_setopt($curl, CURLOPT_URL, $this->baseUrl. '/members/me/boards?key=' . $this->key . '&token=' . $this->token);
@@ -24,6 +37,14 @@ class trelloAutomation extends TrelloInfoConstant
         return false;
     }
 
+    /**
+     * 特定のリストのlistIdの取得
+     * 取得できない場合はfalseを返す。
+     * 
+     * @param string $boardId
+     * @param string $dayOfTheWeek
+     * @return string|bool
+     */
     public function getListIdByBoardId($boardId, $dayOfTheWeek) {
         $curl = curl_init();
         curl_setopt($curl, CURLOPT_URL, $this->baseUrl. '/boards/' . $boardId . '/lists?key=' . $this->key . '&token=' . $this->token);
@@ -40,6 +61,13 @@ class trelloAutomation extends TrelloInfoConstant
         return false;
     }
 
+    /**
+     * 特定のリスト内の全カード情報の取得
+     * 取得できない場合はfalseを返す。
+     * 
+     * @param string $listId
+     * @return array|bool
+     */
     public function getCardsInfoByListId($listId){
         $curl = curl_init();
         curl_setopt($curl, CURLOPT_URL, $this->baseUrl. '/lists/' . $listId . '/cards?key=' . $this->key . '&token=' . $this->token);
@@ -48,6 +76,12 @@ class trelloAutomation extends TrelloInfoConstant
         return json_decode($response, true);
     }
 
+    /**
+     * 特定のリスト内の全カードへのラベリング実行
+     * 
+     * @param array $cardInfo
+     * @param string $color
+     */
     public function execLabelingToCardsInList($cardsInfo, $color) {  
         foreach ($cardsInfo as $card) {
             $cardId  = $card['id'];
