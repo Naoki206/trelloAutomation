@@ -7,11 +7,10 @@ class FridayExec extends trelloAutomation
 }
 
 $fridayExec = new FridayExec;
-//boardId取得
-$boardId = $fridayExec->getBoardIdByBoardName();
-//特定のリストId取得
-$listId = $fridayExec->getListIdByBoardId($boardId, '金');
-//リスト内のカード情報取得
-$cardsInfo = $fridayExec->getCardsInfoByListId($listId);
-//ラベリング実行第二引数でラベルの色指定)
-$fridayExec->execLabelingToCardsInList($cardsInfo, 'red');
+$boardId = $fridayExec->getBoardIdByBoardName(); #boardId取得
+if ($boardId) echo "could not find boardId"; exit;
+$listId = $fridayExec->getListIdByBoardId($boardId, '金'); #特定のリストId取得
+if ($listdId) echo "could not find listId"; exit;
+$cardsInfo = $fridayExec->getCardsInfoByListId($listId); #リスト内のカード情報取得
+if ($cardsInfo) echo "could not find cardsInfo"; exit;
+$fridayExec->execLabelingToCardsInList($cardsInfo, 'red'); #ラベリング実行第二引数でラベルの色指定

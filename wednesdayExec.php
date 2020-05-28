@@ -7,17 +7,10 @@ class WednesdayExec extends trelloAutomation
 }
 
 $wednessdayExec = new WednesdayExec;
-//boardId取得
-$boardId = $wednessdayExec->getBoardIdByBoardName();
-//特定のリストId取得
-$listId = $wednessdayExec->getListIdByBoardId($boardId, '水');
-//リスト内のカード情報取得
-$cardsInfo = $wednessdayExec->getCardsInfoByListId($listId);
-//ラベリング実行第二引数でラベルの色指定)
-$wednessdayExec->execLabelingToCardsInList($cardsInfo, 'red');
-
-
-
-
-
-
+$boardId = $wednessdayExec->getBoardIdByBoardName(); #boardId取得
+if ($boardId) echo "could not find boardId"; exit;
+$listId = $wednessdayExec->getListIdByBoardId($boardId, '水'); #特定のリストId取得
+if ($listdId) echo "could not find listId"; exit;
+$cardsInfo = $wednessdayExec->getCardsInfoByListId($listId); #リスト内のカード情報取得
+if ($cardsInfo) echo "could not find cardsInfo"; exit;
+$wednessdayExec->execLabelingToCardsInList($cardsInfo, 'red'); #ラベリング実行第二引数でラベルの色指定

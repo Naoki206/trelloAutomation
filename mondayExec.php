@@ -7,11 +7,10 @@ class MondayExec extends trelloAutomation
 }
 
 $mondayExec = new MondayExec;
-//boardId取得
-$boardId = $mondayExec->getBoardIdByBoardName();
-//特定のリストId取得
-$listId = $mondayExec->getListIdByBoardId($boardId, '月');
-//リスト内のカード情報取得
-$cardsInfo = $mondayExec->getCardsInfoByListId($listId);
-//ラベリング実行第二引数でラベルの色指定)
-$mondayExec->execLabelingToCardsInList($cardsInfo, 'red');
+$boardId = $mondayExec->getBoardIdByBoardName(); #boardId取得
+if ($boardId) echo "could not find boardId"; exit;
+$listId = $mondayExec->getListIdByBoardId($boardId, '月'); #特定のリストId取得
+if ($listdId) echo "could not find listId"; exit;
+$cardsInfo = $mondayExec->getCardsInfoByListId($listId); #リスト内のカード情報取得
+if ($cardsInfo) echo "could not find cardsInfo"; exit;
+$mondayExec->execLabelingToCardsInList($cardsInfo, 'red');#ラベリング実行第二引数でラベルの色指定
