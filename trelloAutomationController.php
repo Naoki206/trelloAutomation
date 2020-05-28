@@ -1,5 +1,5 @@
 <?php
-require("/Users/naoki/trello_automation/trelloInfoConstant.php");
+require("/Users/naoki/trello_automation/trelloAutomation/trelloInfoConstant.php");
 
 class trelloAutomation extends TrelloInfoConstant
 {

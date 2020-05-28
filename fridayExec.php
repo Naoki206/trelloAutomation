@@ -1,5 +1,5 @@
 <?php
-require("/Users/naoki/trello_automation/trelloAutomationController.php");
+require("/Users/naoki/trello_automation/trelloAutomation/trelloAutomationController.php");
 
 class FridayExec extends trelloAutomation
 {
