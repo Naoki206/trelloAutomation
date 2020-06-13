@@ -50,7 +50,7 @@ https://trello.com/app-key
 
 ```
 .
-├── exec.php //実行するファイル
+├── exec.php //実行するファイル(バッチファイル)
 ├── trelloAutomationController.php //処理全般
 └── trelloInfoConstant.php //固定情報を置いておくファイル
 
