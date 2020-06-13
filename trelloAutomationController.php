@@ -85,13 +85,18 @@ class trelloAutomation extends TrelloInfoConstant
     public function execLabelingToCardsInList($cardsInfo, $color) {  
         foreach ($cardsInfo as $card) {
             $cardId  = $card['id'];
+            $cardName = $card['name'];
             $color   = $color;
             $curl = curl_init();
             curl_setopt($curl, CURLOPT_URL, $this->baseUrl. '/cards/' . $cardId . '/labels?color=' . $color . '&key=' . $this->key . '&token=' . $this->token);
             $response = $this->execCurlProcess($curl, 'POST');
             $result   = json_decode($response, true);
             curl_close($curl);
-            var_dump($result);
+            if (is_null($result)) {
+                echo "already labbeled on " . $cardName . PHP_EOL;
+            } else {
+                echo "labbeled on " . $cardName . " successfuly" . PHP_EOL;
+            }
         }
     }
 }
