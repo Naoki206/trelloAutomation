@@ -5,9 +5,15 @@ require("/Users/naoki/trello_automation/trelloAutomation/trelloAutomationControl
 
 class Exec extends trelloAutomation
 {
-    public function argumentExists($name, $arg=false) {
+     /**
+     *　該当変数がfalseな場合処理をexit
+     * 
+     * @param array $variableName
+     * @param string $arg
+     */
+    public function argumentExists($variableName, $arg=false) {
         if (!$arg) {
-            echo "could not find" . $name;
+            echo "could not find " . $variableName;
             exit;
         }
         return true;
@@ -25,4 +31,3 @@ $exec->argumentExists('list_id', $listId);
 $cardsInfo = $exec->getCardsInfoByListId($listId); //リスト内のカード情報取得
 $exec->argumentExists('cards_info', $cardsInfo);
 $exec->execLabelingToCardsInList($cardsInfo, $labelingColor); //ラベリング実行第二引数でラベルの色指定
-echo "labeling successed";
